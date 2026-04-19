@@ -1,0 +1,56 @@
+{
+  "name": "thamma",
+  "version": "3.1.0",
+  "description": "Thamma — an AI assistant that lives in your MacBook notch",
+  "main": "./out/main/main.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+  "package": "electron-vite build && electron-builder",
+    "preview": "electron-vite preview"
+  },
+  "dependencies": {
+    "electron-store": "^8.2.0",
+    "openai": "^4.73.1"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.10.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.0",
+    "electron-vite": "^5.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.thamma.notchbot",
+    "productName": "Thamma",
+    "icon": "resources/icon.icns",
+    "asar": true,
+    "extraResources": [
+      { "from": "src/moshi_server.py", "to": "moshi_server.py" },
+      { "from": "resources/tray-icon.png", "to": "tray-icon.png" },
+      { "from": "resources/tray-icon@2x.png", "to": "tray-icon@2x.png" }
+    ],
+    "files": [
+      "out/**/*"
+    ],
+    "mac": {
+      "target": [
+        { "target": "dmg", "arch": ["arm64"] }
+      ],
+      "category": "public.app-category.utilities",
+      "identity": null,
+      "gatekeeperAssess": false,
+      "darkModeSupport": true
+    },
+    "dmg": {
+      "title": "Thamma",
+      "icon": "resources/icon.icns",
+      "background": null,
+      "window": { "width": 540, "height": 380 }
+    },
+    "publish": null
+  }
+}
